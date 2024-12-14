@@ -122,12 +122,12 @@ Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos 
 
 ¡Felicidades realizaste tu primer quiz!
 
-<p> Estructura de calificación </p>
+<h4 align="center">  Estructura de calificación  </h4>
 
 La calificación se basa en 100 puntos lo cuales se dividen entre la cantidad de preguntas del quiz.
 
 ```
-  (preguntascertadas*100)/cantidaddepreguntas
+  (preguntas_acertadas*100)/cantidad_de_preguntas
 ```
 
 ## Autor
