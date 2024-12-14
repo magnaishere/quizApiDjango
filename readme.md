@@ -80,9 +80,11 @@ Esta estructura de autenticación está generada con el sistema predeterminado d
 <image src="https://i.ibb.co/YtSZcsV/Captura-de-pantalla-2024-12-14-090050.png" alt="Paso2">
 
 :warning: Importante: Debe dejarse un espacio entre la palabra `Token` y el token generado. ejemplo: 
+
 ```
 Token {mygeneratedtoken}
 ```
+
 Tras autenticarse puede realizarse un quiz registrado previamente en la base de datos (o alguno creado por un usuario `STAFF`)
 
 Ubicamos el método "Método para hacer un quiz" el cual presenta la siguiente estructura:
@@ -91,9 +93,9 @@ Ubicamos el método "Método para hacer un quiz" el cual presenta la siguiente e
 
 Se indican 3 paremetros:
 
--`user:` indica el id del usuario entregado tras el registro o login.
--`quiz:` indica el id del quiz registrado (Usaremos el valor `1` para la prueba rápida).
--`answer:` la respuesta a la pregunta indicada (En la primera ejecución no es necesario ya que no estamos respondiendo ninguna pregunta, por tanto podemos enviarlo vacío o con cualquier valor puesto que será ignorado en esta primera ejecución).
+- `user:` indica el id del usuario entregado tras el registro o login.
+- `quiz:` indica el id del quiz registrado (Usaremos el valor `1` para la prueba rápida).
+- `answer:` la respuesta a la pregunta indicada (En la primera ejecución no es necesario ya que no estamos respondiendo ninguna pregunta, por tanto podemos enviarlo vacío o con cualquier valor puesto que será ignorado en esta primera ejecución).
 
 Nuestra petición queda de la siguiente manera:
 
@@ -105,8 +107,8 @@ El servidor responderá con el siguiente formato
 
 Se ubican multiples paremetros:
 
--`status:` indica la el resultado de la transacción.
--`question:` el objeto con los datos de la pregunta y sus posibles respuestas.
+- `status:` indica la el resultado de la transacción.
+- `question:` el objeto con los datos de la pregunta y sus posibles respuestas.
 
 En la información de la pregunta podemos encontrar la pregunta en formato string `question`, `image` el cual es un campo opcional dependiendo de si se agregó una imagen a la pregunta o no y el array `answers` el cual incluye todas las posibles respuestas.
 
