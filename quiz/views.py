@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .serializers import QuizSerializer, QuestionSerializer, AnswerSerializer, UserResultSerializer, TemporizerSerializer
 from .models import Quiz, Question, Answer, UserResult, Temporizer
-from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import parser_classes
 from drf_yasg.utils import swagger_auto_schema
@@ -12,20 +12,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import status
-from .schemas import QuizStepByUserSchema
+from .schemas import step_quiz_schema, QuizStepByUserSchema
 from .email import BalanceEmailService
 import datetime
 
-class ReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        return request.method in SAFE_METHODS
-
-# Create your views here.
+# Vistas de quiz SOLO SUPERUSERS()
 class QuizView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser,]
     serializer_class = QuizSerializer
     queryset = Quiz.objects.all()
     def list(self, request, *args, **kwargs):
@@ -35,12 +31,14 @@ class QuizView(viewsets.ModelViewSet):
             item['questions'] = QuestionSerializer(Question.objects.filter(quiz=data["id"]), many=True).data
         return response
 
+    
+# Vistas de quiz SOLO SUPERUSERS()
 @parser_classes((MultiPartParser,))  
 class QuestionView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated] 
+    permission_classes = [IsAdminUser,] 
     serializer_class = QuestionSerializer
     my_tags = ["Questions"]
-    @swagger_auto_schema(manual_parameters=[openapi.Parameter('answers', openapi.IN_FORM, description="Respuestas separadas por (,) por ejemplo: answer1,answer2,answer3,answer4", required=True, type=openapi.TYPE_STRING)])
+    @swagger_auto_schema(manual_parameters=[openapi.Parameter('answers', openapi.IN_QUERY, description="Respuestas separadas por (,) por ejemplo: answer1,answer2,answer3,answer4", required=True, type=openapi.TYPE_STRING)])
     def create(self, request, *args, **kwargs):
         serializer = QuestionSerializer(data=request.data)
         if not serializer.is_valid():
@@ -57,28 +55,23 @@ class QuestionView(viewsets.ModelViewSet):
             }}, status=status.HTTP_200_OK)
     queryset = Question.objects.all()
     
+    
+# Vistas de answers result Solo GET y SUPERUSERS()
 class AnswerView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser,]
     http_method_names = ['get']
     serializer_class = AnswerSerializer
-    queryset = Answer.objects.all()
+    queryset = Answer.objects.all()         
 
-login_schema = openapi.Schema(
-    type=openapi.TYPE_OBJECT,
-    properties={
-        'quiz': openapi.Schema(type=openapi.TYPE_INTEGER, description='id del quiz a ejecutar.'),
-        'user': openapi.Schema(type=openapi.TYPE_INTEGER, description='id del usuario actual.'),
-        'answer': openapi.Schema(type=openapi.TYPE_STRING, description='Debe estar escrito de manera exacta al String de respuesta de lo contrario sera tomada como incorrecta por ejemplo=\'answer1\'. Solamente válido para responder a la pregunta. Este campo sera ignorado por el sistema en la primera ejecución.'),
-    },
-    required=['quiz', 'user']
-)            
-
+# Vistas de userResult Solo GET y SUPERUSERS()
 class UserResultView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated|ReadOnly]
+    permission_classes = [IsAdminUser,]
     http_method_names = ['get']
     serializer_class = UserResultSerializer
     queryset = UserResult.objects.all()
-@swagger_auto_schema(tags=['Método para hacer un quiz'], request_body=login_schema, responses=QuizStepByUserSchema, method='POST')
+    
+# Método personalizado para realizar un quiz Solo usuarios autenticados
+@swagger_auto_schema(tags=['Método para hacer un quiz'], request_body=step_quiz_schema, responses=QuizStepByUserSchema, method='POST')
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])

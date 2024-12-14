@@ -7,11 +7,15 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import BasePermission
 from rest_framework.authentication import TokenAuthentication
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import LoginSerializer, RegisterSerializer
 from quiz.schemas import LoginSchema
+
+class IsAdminUser(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.is_staff
 
 @swagger_auto_schema(request_body=LoginSerializer, responses=LoginSchema, method='post')
 @api_view(['POST'])

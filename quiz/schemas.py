@@ -54,3 +54,13 @@ LoginSchema = {
         }
     )
 }
+
+step_quiz_schema = openapi.Schema(
+    type=openapi.TYPE_OBJECT,
+    properties={
+        'quiz': openapi.Schema(type=openapi.TYPE_INTEGER, description='id del quiz a ejecutar.'),
+        'user': openapi.Schema(type=openapi.TYPE_INTEGER, description='id del usuario actual.'),
+        'answer': openapi.Schema(type=openapi.TYPE_STRING, description='Debe estar escrito de manera exacta al String de respuesta de lo contrario sera tomada como incorrecta por ejemplo=\'answer1\'. Solamente válido para responder a la pregunta. Este campo sera ignorado por el sistema en la primera ejecución.'),
+    },
+    required=['quiz', 'user']
+)   
