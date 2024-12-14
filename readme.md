@@ -124,8 +124,9 @@ Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos 
 
 <h4 align="center">  Estructura de calificación  </h4>
 
-La calificación se basa en 100 puntos los cuales se dividen entre la cantidad de preguntas del quiz.
-ejemplo: `5 preguntas = 20 puntos cada una. 2 preguntas certadas = 40 puntos.`
+La calificación se basa en 100 puntos los cuales se dividen entre la cantidad de preguntas del quiz. 
+
+Ejemplo: `5 preguntas = 20 puntos cada una. 2 preguntas certadas = 40 puntos.`
 
 Formula:
 
