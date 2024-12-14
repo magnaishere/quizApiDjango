@@ -124,5 +124,5 @@ Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos 
 
 <img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png"  width=115><br><sub>Dehiker Corro</sub> 
 
-| [<img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png" style="border-radius: 50%;" width=115><br><sub>Camila Fernanda Alves</sub>](https://github.com/camilafernanda) |  [<img src="https://avatars.githubusercontent.com/u/71970858?v=4" width=115><br><sub>Ellen Pimentel</sub>]([https://github.com/guilhermeonrails](https://github.com/ellenpimentel)) |  [<img src="https://avatars.githubusercontent.com/u/91544872?v=4" width=115><br><sub>Génesys Rondón</sub>](https://github.com/genesysaluralatam) |
-| :---: | :---: | :---: |
+| [<img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png" style="border-radius: 50%;" width=115><br><sub>Dehiker Corro</sub>](https://dehikershere.netlify.app/) | 
+| :---: |
