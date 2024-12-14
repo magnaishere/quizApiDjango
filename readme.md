@@ -122,6 +122,14 @@ Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos 
 
 ¡Felicidades realizaste tu primer quiz!
 
+<p> Estructura de calificación </p>
+
+La calificación se basa en 100 puntos lo cuales se dividen entre la cantidad de preguntas del quiz.
+
+```
+  (preguntascertadas*100)/cantidaddepreguntas
+```
+
 ## Autor
 
 | [<img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png" style="border-radius: 50%;" width=115><br><sub>Dehiker Corro</sub>](https://dehikershere.netlify.app/) | 
