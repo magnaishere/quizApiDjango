@@ -122,7 +122,5 @@ Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos 
 
 ## Autor
 
-<img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png"  width=115><br><sub>Dehiker Corro</sub> 
-
 | [<img src="https://i.ibb.co/1MmV43j/Captura-de-pantalla-2024-12-14-102432.png" style="border-radius: 50%;" width=115><br><sub>Dehiker Corro</sub>](https://dehikershere.netlify.app/) | 
 | :---: |
