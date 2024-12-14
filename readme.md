@@ -49,13 +49,13 @@ Tras ser instalado el entorno de desarrollo (importar del repositorio, instalaci
 
 <h4 align="center">  Guía rápida para realizar un quiz  </h4>
 
-<p> La ruta de <strong>Swagger</strong> para realizar operaciones iniciales </p>
+La ruta de <strong>Swagger</strong> para realizar operaciones iniciales
 
 ```
   http://localhost:8000/doc/
 ```
 
-<p> El sistema de autenticación esta programado por bloques, el metodo `Register` puede crear usuarios capaces de realizar quiz en el sistema, mas no ejecutar los CRUD de escritura. Solamente usarios bajo la condición de `STAFF` pueden realizar cambios en los registros de todos los métodos. Este tipo de usuario puede crease mediante el siguiente comando: </p>
+El sistema de autenticación esta programado por bloques. El metodo `Register` puede crear usuarios capaces de realizar quiz en el sistema, mas no ejecutar los CRUD de escritura. Solamente usarios bajo la condición de `STAFF` pueden realizar cambios en los registros de todos los métodos. Este tipo de usuario puede crease mediante el siguiente comando:
 
 ```
   python manage.py createsuperuser
@@ -79,8 +79,10 @@ Esta estructura de autenticación está generada con el sistema predeterminado d
 
 <image src="https://i.ibb.co/YtSZcsV/Captura-de-pantalla-2024-12-14-090050.png" alt="Paso2">
 
-:warning: Importante: Debe dejarse un espacio entre la palabra `Token` y el token generado. ejemplo: `Token {mygeneratedtoken}`
-
+:warning: Importante: Debe dejarse un espacio entre la palabra `Token` y el token generado. ejemplo: 
+```
+Token {mygeneratedtoken}
+```
 Tras autenticarse puede realizarse un quiz registrado previamente en la base de datos (o alguno creado por un usuario `STAFF`)
 
 Ubicamos el método "Método para hacer un quiz" el cual presenta la siguiente estructura:
@@ -89,9 +91,9 @@ Ubicamos el método "Método para hacer un quiz" el cual presenta la siguiente e
 
 Se indican 3 paremetros:
 
-*`user:` indica el id del usuario entregado tras el registro o login.
-*`quiz:` indica el id del quiz registrado (Usaremos el valor `1` para la prueba rápida).
-*`answer:` la respuesta a la pregunta indicada (En la primera ejecución no es necesario ya que no estamos respondiendo ninguna pregunta, por tanto podemos enviarlo vacío o con cualquier valor puesto que será ignorado en esta primera ejecución).
+-`user:` indica el id del usuario entregado tras el registro o login.
+-`quiz:` indica el id del quiz registrado (Usaremos el valor `1` para la prueba rápida).
+-`answer:` la respuesta a la pregunta indicada (En la primera ejecución no es necesario ya que no estamos respondiendo ninguna pregunta, por tanto podemos enviarlo vacío o con cualquier valor puesto que será ignorado en esta primera ejecución).
 
 Nuestra petición queda de la siguiente manera:
 
@@ -103,8 +105,8 @@ El servidor responderá con el siguiente formato
 
 Se ubican multiples paremetros:
 
-*`status:` indica la el resultado de la transacción.
-*`question:` el objeto con los datos de la pregunta y sus posibles respuestas.
+-`status:` indica la el resultado de la transacción.
+-`question:` el objeto con los datos de la pregunta y sus posibles respuestas.
 
 En la información de la pregunta podemos encontrar la pregunta en formato string `question`, `image` el cual es un campo opcional dependiendo de si se agregó una imagen a la pregunta o no y el array `answers` el cual incluye todas las posibles respuestas.
 
@@ -112,5 +114,13 @@ para la siguiente vuelta tomaremos una de las respuestas posibles y la colocarem
 
 <image src="https://i.ibb.co/vQ9m9Nf/Captura-de-pantalla-2024-12-14-100918.png" alt="Paso6">
 
-Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos con el mismo proceso hasta que no quede ninguna, en tal caso solamente devolverá `status: 'success'` y los resultados llegaran al correo electrónico del usuario registrado.
+Si realizamos esta petición nos devolverá la siguiente pregunta y proseguimos con el mismo proceso hasta que no quede ninguna, en tal caso solamente devolverá `status: 'success'` y los resultados llegaran al correo electrónico del usuario registrado con el siguiente formato:
+
+<image src="https://i.ibb.co/G0FcK1t/Captura-de-pantalla-2024-12-14-101928.png" alt="Paso7">
+
+¡Felicidades realizaste tu primer quiz!
+
+## Autor
+
+| [<img src="https://i.ibb.co/t3r7Dx2/profile.png" width=115><br><sub>Dehiker Corro</sub>](https://dehikershere.netlify.app/) |
 
