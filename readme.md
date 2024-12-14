@@ -1,12 +1,8 @@
-<p align="center">
-  <a href="https://codesandbox.io">
-    <img src="https://codesandbox.io/static/img/banner.png?v=2" height="300px">
-  </a>
-</p>
+<em> # Api Quiz </em>
 
 &nbsp;
 
-<h4 align="center">  Descripción del Desafío:  </h4>
+<h4 align="center">  Descripción del Desafío  </h4>
 El objetivo es desarrollar una API para un sistema de "Quiz" que permita gestionar cuestionarios, calcular puntos de los usuarios, y enviar un correo con los resultados al finalizar. Los detalles son los siguientes:
 
 
@@ -46,37 +42,16 @@ El objetivo es desarrollar una API para un sistema de "Quiz" que permita gestion
 - :heavy_check_mark: Implementar un sistema de temporizador para limitar el tiempo de respuesta de un Quiz.
 - :heavy_check_mark: Escribir pruebas unitarias y de integración para verificar la lógica de puntos y el envío de correos.
 
-## Other CodeSandbox repositories
 
-CodeSandbox consists of several separate servers, some of which are open
-sourced.
+<h4 align="center">  Como empezar  </h4>
 
-- Client: the web application
-- Server: the [Phoenix](https://github.com/phoenixframework/phoenix) API server
-- Nginx: Nginx config files
-- [Git Extractor](https://github.com/codesandbox/codesandbox-importers):
-  responsible for extracting the source from a GitHub repository
-- [CLI](https://github.com/codesandbox/codesandbox-importers/tree/master/packages/cli):
-  the CLI to upload a CodeSandbox project from your command line
+Tras ser instalado el entorno de desarrollo (importar del repositorio, instalación de paquetes, etc) se debe tener en cuenta que el proyecto incluye la base de datos sqlite con algunos datos de pruebas (un Quiz registrado y algunas preguntas). Sin embargo acá se incluye una guía rápida de pruebas.
 
-## Documentation
 
-You can find our documentation on our
-[website](https://codesandbox.io/docs/learn/introduction/overview)
+<h4 align="center">  Guía rápida de pruebas  </h4>
 
-## Contributors ✨
+<p> La ruta de <strong>Swagger</strong> para realizar operaciones iniciales
 
-Thanks goes to these wonderful people
-([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-## Thanks
-
-<a href="https://www.chromaticqa.com/"><img src="https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a" width="120"/></a>
-
-Thanks to [Chromatic](https://www.chromaticqa.com/) for providing the visual
-testing platform that helps us catch unexpected changes.
+```
+  http://127.0.0.1:8000/doc/
+```
