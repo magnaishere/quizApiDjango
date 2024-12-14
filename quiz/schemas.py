@@ -30,3 +30,27 @@ QuizStepByUserSchema = {
     )
 }
 
+LoginSchema = {
+    status.HTTP_200_OK: openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+           'token': openapi.Schema(
+              type=openapi.TYPE_STRING
+           ),
+           "user": openapi.Schema(
+              type=openapi.TYPE_OBJECT,
+              properties={
+                    "id":       openapi.Schema(
+                                    type=openapi.TYPE_INTEGER
+                                ),
+                    "username": openapi.Schema(
+                                    type=openapi.TYPE_STRING
+                                ),
+                    "email":      openapi.Schema(
+                                    type=openapi.TYPE_STRING
+                                )
+                }
+            )
+        }
+    )
+}

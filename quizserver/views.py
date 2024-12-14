@@ -11,7 +11,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import LoginSerializer, RegisterSerializer
-@swagger_auto_schema(request_body=LoginSerializer, method='post')
+from quiz.schemas import LoginSchema
+
+@swagger_auto_schema(request_body=LoginSerializer, responses=LoginSchema, method='post')
 @api_view(['POST'])
 def login(request):
     user = get_object_or_404(User, username = request.data['username'])
@@ -23,7 +25,7 @@ def login(request):
     
     return Response({'token': token.key, 'user': serializer.data}, status=status.HTTP_200_OK)
 
-@swagger_auto_schema(request_body=RegisterSerializer, method='post')
+@swagger_auto_schema(request_body=RegisterSerializer, responses=LoginSchema, method='post')
 @api_view(['POST'])
 def register(request):
     serializer = UserSerializer(data = request.data)
@@ -35,5 +37,5 @@ def register(request):
         user.save()
         
         token = Token.objects.create(user=user)
-        return Response({'token': token.key, 'user': serializer.data}, status=status.HTTP_201_CREATED)
+        return Response({'token': token.key, 'user': { 'id': serializer.data["id"], 'username': serializer.data["username"], 'email': serializer.data["email"] }}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

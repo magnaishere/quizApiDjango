@@ -1,5 +1,4 @@
-<em> # Api Quiz </em>
-
+<h1 align="center"> Api Quiz </h1>
 &nbsp;
 
 <h4 align="center">  Descripción del Desafío  </h4>
@@ -53,5 +52,9 @@ Tras ser instalado el entorno de desarrollo (importar del repositorio, instalaci
 <p> La ruta de <strong>Swagger</strong> para realizar operaciones iniciales
 
 ```
-  http://127.0.0.1:8000/doc/
+  http://localhost:8000/doc/
 ```
+
+La autenticación en necesaria por tanto el primero método a consultar debe ser `Register` 
+
+<image src="https://i.ibb.co/JQDdFPR/Captura-de-pantalla-2024-12-14-085302.png" alt="Paso1">
