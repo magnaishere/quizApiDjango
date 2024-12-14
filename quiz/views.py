@@ -76,13 +76,13 @@ class UserResultView(viewsets.ModelViewSet):
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def QuizStepByUser(request):
-    user = get_object_or_404(User, id = request.query_params['user'])
+    user = get_object_or_404(User, id = request.data['user'])
     if not user:
         return Response({"error": "Usuario no válido"}, status=status.HTTP_400_BAD_REQUEST)
-    quiz = get_object_or_404(Quiz, id = request.query_params['quiz'])
+    quiz = get_object_or_404(Quiz, id = request.data['quiz'])
     if not quiz:
         return Response({"error": "Quiz no válido"}, status=status.HTTP_400_BAD_REQUEST)
-    answers = Answer.objects.filter(quiz=request.query_params['quiz'], user=user)
+    answers = Answer.objects.filter(quiz=request.data['quiz'], user=user)
     temps = Temporizer.objects.filter(quiz=quiz, user=user).order_by("id")
     if len(temps)==0:
         # Primera pregunta
@@ -133,7 +133,7 @@ def QuizStepByUser(request):
         # No es primera pregunta calculamos la siguiente pregunta...
         newQuestion = allQuestions[len(answers)+1]
         oldQuestion = allQuestions[len(answers)]
-        serializerAnswer = AnswerSerializer(data={'quiz': quiz.id, 'question': oldQuestion[0], 'user': user.id, 'answer': request.query_params['answer']})
+        serializerAnswer = AnswerSerializer(data={'quiz': quiz.id, 'question': oldQuestion[0], 'user': user.id, 'answer': request.data['answer']})
         if not serializerAnswer.is_valid():
             return Response({ 'status': 'error' }, status=status.HTTP_400_BAD_REQUEST)
         serializerAnswer.save()
