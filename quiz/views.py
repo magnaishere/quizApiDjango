@@ -107,10 +107,10 @@ def QuizStepByUser(request):
         answers.delete()
         Temporizer.objects.filter(quiz=quiz, user=user).delete()
         return Response({"error": "El tiempo para culminar el quiz ha concluido, por favor intente nuevamente"}, status=status.HTTP_400_BAD_REQUEST)
-    allQuestions = Question.objects.filter(quiz=quiz).order_by("id").values_list('id', 'question','image', 'answers')
+    allQuestions = Question.objects.filter(quiz=quiz).order_by("id").values_list('id', 'question','image', 'answers', 'correct')
     if len(answers)+1 == len(allQuestions):
         # Quiz terminado calculando...
-        if allQuestions.order_by("-id")[len(answers)].correct==request.data['answer']:
+        if allQuestions.order_by("-id")[len(answers)][4]==request.data['answer']:
             success = 1
         else:
             success = 0
