@@ -110,7 +110,10 @@ def QuizStepByUser(request):
     allQuestions = Question.objects.filter(quiz=quiz).order_by("id").values_list('id', 'question','image', 'answers')
     if len(answers)+1 == len(allQuestions):
         # Quiz terminado calculando...
-        success = 0
+        if allQuestions.order_by("-id")[len(answers)].correct==request.data['answer']:
+            success = 1
+        else:
+            success = 0
         for answ in answers:
             if answ.answer==answ.question.correct:
                 success = success+1
